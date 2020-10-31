@@ -109,6 +109,11 @@ if (!isset($_SESSION['role'])) {
                         <span class="arrow fas d-block fa-caret-left"></span>
                     </a>
                     <ul id="showMenu" class="feat-show d-none onclick-sidemenu">
+                    <li>
+                            <a href="users.php">
+                                <span class="title">All User</span>
+                            </a>
+                        </li>
                         <li>
                             <a href="">
                                 <span class="title">Add User</span>
