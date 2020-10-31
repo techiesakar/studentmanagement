@@ -1,0 +1,44 @@
+.table-bordered {
+    border: 1px solid #dee2e6!important;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table .text-left{
+    text-align: left;
+}
+
+.table-bordered thead td, .table-bordered thead th {
+    border-bottom-width: 2px;
+}
+
+.table-bordered td, .table-bordered th {
+    border: 1px solid #dee2e6;
+        border-bottom-width: 1px;
+}
+
+.table td, .table th {
+    padding: .75rem;
+    vertical-align: middle;
+}
+.table {
+    border: 1px solid #dee2e6;
+}
+table thead{
+    border-bottom: 1px solid #b9bcbf;
+
+}
+/* Custom Page */
+
+
+
+/* table no border */
+

@@ -1,0 +1,339 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/* Global CSS */
+body {
+    min-height: 100vh;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+.vh-100 {
+    height: 100vh;
+}
+
+.vh-50 {
+    height: 50vh;
+}
+/* --------------------Display Properties--------------------- */
+
+.d-flex {
+    display: flex;
+}
+.d-none {
+    display: none;
+}
+
+.d-inline-block {
+    display: inline-block;
+}
+
+.d-block {
+    display: block;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+/* --------------------Justify Content--------------------- */
+.justify-content-center {
+    justify-content: center;
+}
+.justify-content-space-between {
+    justify-content: space-between;
+}
+
+.justify-content-space-around {
+    justify-content: space-around;
+}
+
+.justify-content-flex-end {
+    justify-content: flex-end;
+}
+
+/* --------------------Align Items-------------------- */
+
+.align-items-center {
+    align-items: center;
+}
+
+/* --------------------Flex Order---------------------- */
+.o-1 {
+    order: 1;
+}
+
+.o-2 {
+    order: 2;
+}
+
+.o-3 {
+    order: 3;
+}
+
+.o-4 {
+    order: 4;
+}
+
+/* ----------------------Cursor------------------------------ */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* --------------------List Style-------------------- */
+
+.list-style-none {
+    list-style: none;
+}
+
+ul li a {
+    text-decoration: none;
+}
+
+/* --------------------Text-------------------- */
+
+.text-decoration-none {
+    text-decoration: none;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* --------------------Border-------------------- */
+
+.border-none {
+    border: none;
+}
+
+/* --------------------Outline-------------------- */
+
+.outline-none {
+    outline: none;
+}
+
+/* --------------------Padding---------------------- */
+
+.p-10{
+	padding: 10px;
+}
+
+.px-20 {
+    padding: 0 20px;
+}
+
+
+/* Padding Y Axis */
+
+.py-4 {
+    padding: 4px 0;
+}
+
+.py-6 {
+    padding: 6px 0;
+}
+.py-8 {
+    padding: 8px 0;
+}
+.py-10 {
+    padding: 10px 0;
+}
+
+
+/* Padding only Right */
+.p-or-20 {
+    padding: 0 20px 0 0;
+}
+
+
+/* --------------------Margin---------------------- */
+
+.mr-auto {
+    margin-right: auto;
+}
+
+.ml-auto {
+    margin-left: auto;
+}
+
+
+
+.mb-4{
+    margin-bottom: 4px;
+}
+
+.mb-6 {
+    margin-bottom: 6px;
+}
+
+.mb-8 {
+    margin-bottom: 8px;
+}
+
+.mb-10{
+    margin-top: 10px;
+}
+.mb-15 {
+    margin-bottom: 15px;
+}
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.mt-4{
+    margin-top: 4px;
+}
+
+.mt-6 {
+    margin-top: 6px;
+}
+
+.mt-8 {
+    margin-top: 8px;
+}
+
+.mt-10{
+    margin-top: 10px;
+}
+
+/* Margin Right */
+
+.mr-5 {
+    margin-right: 5px!important;
+}
+
+.mr-10{
+    margin-right: 10px;
+}
+
+.mr-14{
+    margin-right: 14px;
+}
+
+.mr-16{
+    margin-right: 16px;
+}
+
+.mr-20{
+    margin-right: 20px;
+}
+
+
+
+
+
+/* margin Y axis */
+.my-4 {
+    margin: 4px 0;
+}
+
+.my-6 {
+    margin: 6px 0;
+}
+.my-8 {
+    margin: 8px 0;
+}
+.my-10 {
+    margin: 10px 0;
+}
+
+/* Margin X Axis */
+.mx-4 {
+    margin:0 4px;
+}
+
+.mx-6 {
+    margin:0 6px;
+}
+.mx-8 {
+    margin:0 8px;
+}
+.mx-10 {
+    margin:0 10px;
+}
+
+
+/* Text Decoration */
+.text-decoration-none {
+    text-decoration: none;
+}
+
+
+
+
+/* color */
+.text-primary {
+    color: #2e6da4;
+}
+
+.text-white {
+    color: #fff!important;
+}
+
+.bg-secondary-light{
+    background: #6c757d4f !important;
+}
+
+.bg-dark-light{
+    background: #141619;
+}
+
+/* Font */
+
+.font-weight-bold {
+    font-weight: bold;
+}
+
+.font-weight-normal {
+    font-weight:normal;
+}
+
+.font-weight-light {
+    font-weight: lighter;
+}
+
+.font-italic {
+    font:italic;
+}
+
+.font-14{
+    font-size: 14px;
+}
+
+/* Float */
+.f-right {
+    float: right;
+}
+
+.f-left{
+    float: left;
+}
+
+/* Overflow */
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+/* Radius */
+.rounded-circle {
+    border-radius: 50% !important;
+}
+
