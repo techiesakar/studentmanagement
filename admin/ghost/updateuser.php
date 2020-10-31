@@ -7,15 +7,16 @@ $first_name = "";
 $last_name = "";
 $username = "";
 $email = "";
+$role_name = "";
 $password = "";
-$validation_code = "";
-$role="";
+$conn = mysqli_connect('localhost', 'root', '', 'studentmanagement') or die('Connection Failed');
+$user_id = (isset($_POST['id']) ? $_POST['id'] : '');
 
-
+echo $user_id;
 
 
 // Register User
-if (isset($_POST['reg_user'])) {
+if (isset($_POST['update_user'])) {
 
     //Receive all the inputs from the users 
     $first_name = mysqli_real_escape_string($conn, $_POST['first_name']);
@@ -23,6 +24,8 @@ if (isset($_POST['reg_user'])) {
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
+    $role_name = $_POST['role_name'];
+
 
     // By adding array_push() corresponding error into errors array
 
@@ -68,43 +71,18 @@ if (isset($_POST['reg_user'])) {
     }
 
 
-
-
-
-
-    // first check the database to make sure 
-    // a user does not already exist with the same username and/or email
-
-    $user_check_query = "SELECT * FROM users WHERE username='$username' OR email='$email 'LIMIT 1";
-    $result = mysqli_query($conn, $user_check_query);
-    $user = mysqli_fetch_assoc($result);
-
-    if ($user) { // if user exists
-        if ($user['username'] === $username) {
-            array_push($errors, "Username already exists");
-        }
-
-        if ($user['email'] === $email) {
-            array_push($errors, "Email already exists");
-        }
-    }
-
-    // Finally, register user if there are no errors in the form
-
-
     if (count($errors) == 0) {
         $password = md5($password);
-        $username= strtolower($username);
+        $username = strtolower($username);
         //encrypt the password before saving in the database
-        $validation_code = md5($username + microtime());
-        $sql = "INSERT INTO users (first_name, last_name, username, email, password, role, validation_code, status) 
-                  VALUES('$first_name','$last_name','$username', '$email', '$password','3','$validation_code','')";
-        mysqli_query($conn, $sql);
-        $_SESSION['first_name'] = $first_name;
-        $_SESSION['last_name'] = $last_name;
-        $_SESSION['username'] = $username;
-        $_SESSION['success'] = "You are now logged in";
-        header('location: admin');
+
+
+
+        $sql = "UPDATE users SET username ='{$username}',email ='{$email}', first_name ='{$first_name}',last_name ='{$last_name}', password ='{$password}', role ='{$role_name}' WHERE id={$user_id}";
+        
+        $result = mysqli_query($conn, $sql) or die("Query Unsuccaaessfull");
+        header('location: ../users.php');
+        mysqli_close($conn);
     }
 }
 

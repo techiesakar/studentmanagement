@@ -1,18 +1,18 @@
-<?php include("includes/config.php"); ?>
+<?php include("includes/config.php");
+ob_start();
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Users</title>
+    <title>Edit User</title>
     <?php include("includes/header.php"); ?>
-    <link rel="stylesheet" href="css/table.css">
-    <link rel="stylesheet" href="css/btn.css">
 </head>
 
 <body>
     <div class="main-wrapper">
-
         <?php include("includes/topbar.php"); ?>
 
         <!-- Fixed Left Nav -->
@@ -20,7 +20,7 @@
         <aside class="fixed-left-nav">
             <ul>
                 <li>
-                    <a href="index.php">
+                    <a href="../admin">
                         <span class="icon"><i class="fas fa-tachometer-alt"></i></i></span>
                         <span class="title">Dashboard</span>
                     </a>
@@ -34,11 +34,6 @@
                         <span class="arrow fas d-block fa-caret-left"></span>
                     </a>
                     <ul id="showMenu" class="feat-show d-none onclick-sidemenu">
-                        <li>
-                            <a href="edit.php">
-                                <span class="title">All Posts</span>
-                            </a>
-                        </li>
                         <li>
                             <a href="">
                                 <span class="title">Add New</span>
@@ -54,11 +49,6 @@
                         <span class="arrow fas d-block fa-caret-left"></span>
                     </a>
                     <ul id="showMenu" class="feat-show d-none onclick-sidemenu">
-                        <li>
-                            <a href="edit.php?post_type=page">
-                                <span class="title">All Pages</span>
-                            </a>
-                        </li>
                         <li>
                             <a href="">
                                 <span class="title">Add New</span>
@@ -116,12 +106,12 @@
                             </a>
                         </li>
                         <li>
-                            <a href="adduser">
+                            <a href="">
                                 <span class="title">Add User</span>
                             </a>
                         </li>
                         <li>
-                            <a href="profile.php">
+                            <a href="">
                                 <span class="title">View Profile</span>
                             </a>
                         </li>
@@ -141,7 +131,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="../logout.php">
+                    <a href="logout.php">
                         <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
                         <span class="title">Log Out</span>
                     </a>
@@ -152,80 +142,104 @@
         </aside>
         <div class="page-wrapper">
 
-            <div class="container-fluid px-20">
-                <input class="my-10 btn btn-danger" type="submit" name="submit" value="Delete" onclick="return confirm('Are you sure want to delete!')" class="btn btn-danger"></td>
 
-                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+            <div id="main-content" style="background-color: #F1F1F1;">
+                <?php
+
+                if (empty($_GET['id'])) {
+                    echo "Error";
+                    header('Location: users.php');
+                    ob_end_flush();
+                } else {
+
+
+                ?>
+                    <h2>Add New User</h2>
+
+
+
+                    <!-- Form Starts -->
+
+
                     <?php
-                    if (isset($_POST['submit'])) {
-                        if (isset($_POST['id'])) {
-                            foreach ($_POST['id'] as $id) {
-                                $query = "DELETE FROM users WHERE id='$id'";
-                                mysqli_query($conn, $query);
-                            }
-                        }
-                    }
-
-                    $conn = mysqli_connect('localhost', 'root', '', 'studentmanagement');
-                    $sql = "SELECT * FROM users JOIN role WHERE role.role_id = users.role";
-                    $result = mysqli_query($conn, $sql);
+                    $user_id = $_GET['id'];
+                    $sql = "SELECT * FROM users WHERE id = {$user_id} ";
+                    $result = mysqli_query($conn, $sql) or die("Query Unsuccessful");
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
                     ?>
 
-                    <table class="table table font-14 mt-6">
-                        <thead class="text-left text-primary">
 
-                            <tr>
-                                <th><input type="checkbox" onclick="selectAll(this)" id="selectall"></th>
-                                <th>Username</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Role</th>
-                                <th>Posts</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            while ($row = mysqli_fetch_array($result)) { ?>
-                                <tr>
-                                    <td><input type="checkbox" class="checkItem" value="<?= $row['id'] ?>" name="id[]"></td>
-                                    <td class="d-flex align-items-center">
-                                        <div class="col user-img mr-20" style="width: 35px; height:35px;">
-                                            <img src="img/user.jpg" height="35px" width="35px" alt="" style="border-radius: 100%;">
-                                        </div>
-                                        <div class="col user-items">
 
-                                            <span class="username" style="font-size: 14px;"> <?php echo $row['username']; ?>
-                                            </span> <br>
-                                            <span class="action" style="font-size: 12px;">
-                                                <span class="delete"> <a href='delete-inline.php?id=<?php echo $row['id']; ?>'>Delete</a>
-                                                </span> <span>|</span>
-                                                <span class="edit"> <a href='edit-user.php?id=<?php echo $row['id']; ?>'>Edit</a>
-                                                </span> <span>|</span>
-                                                <span class="view"> <a href='user-profile.php?id=<?php echo $row['id']; ?>'>View</a>
-                                                </span>
+                            <form class="post-form" action="ghost/updateuser.php" method="post" style="margin: 0; background:#E6E6E6; width:60%">
+                                <div class="form-group">
 
-                                            </span> </div>
-                                    </td>
-                                    <td><?php echo $row['first_name']; ?> <?php echo $row['last_name']; ?></td>
-                                    <td><?php echo $row['email']; ?></td>
-                                    <td><?php echo $row['role_name']; ?></td>
-                                    <td></td>
-                                </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
-                </form>
+                                    <div class="form-group">
+                                        <label>Username</label>
+                                        <input type="hidden" name="id" value="<?php echo $row['id']; ?>" />
+
+                                        <input required type="text" name="username" value="<?php echo $row['username']; ?>" />
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input required type="email" name="email" value="<?php echo $row['email']; ?>" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>First Name</label>
+                                        <input required type="text" name="first_name" value="<?php echo $row['first_name']; ?>" />
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label>Last Name</label>
+                                        <input required type="text" name="last_name" value="<?php echo $row['last_name']; ?>" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <input required type="password" name="password" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Role</label>
+                                        <select required name="role_name">
+                                            <option value="" selected disabled>Select Role</option>
+                                            <?php
+                                            $conn = mysqli_connect('localhost', 'root', '', 'studentmanagement') or die('Connection Failed');
+
+                                            $sql = "SELECT * FROM  role";
+                                            $result = mysqli_query($conn, $sql) or die("Query Unsuccessful");
+
+                                            while ($row = mysqli_fetch_assoc($result)) {
+
+
+                                            ?>
+
+                                                <option value="<?php echo $row['role_id'] ?>"><?php echo $row['role_name']; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+
+                                    <input class="submit" type="submit" name="update_user" value="Add New User" style="width: 150px;" />
+                            </form>
+                            <!-- Form Ends -->
+
+                    <?php
+                        } //While Loop Ends
+                    } // If Function Close
+                    ?>
+                <?php  } ?>
+
             </div>
 
+
             <?php include("includes/footer.php"); ?>
+
         </div>
-        <!-- Page Wrapper End -->
+        <!-- Page Wrapper Ends -->
     </div>
-    <!-- Main Wrapper End -->
+    <!-- Main Wrapper Ends -->
     <script src="js/toggleMenu.js"></script>
     <script src="js/dropDown.js"></script>
-    <script src="js/checkBox.js"></script>
-
 
 
 </body>

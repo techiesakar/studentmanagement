@@ -95,11 +95,12 @@ if (isset($_POST['reg_user'])) {
 
     if (count($errors) == 0) {
         $password = md5($password);
+        $username= strtolower($username);
         //encrypt the password before saving in the database
         $sql = "INSERT INTO users (first_name, last_name, username, email, password, role, validation_code, status) 
                   VALUES('{$first_name}','{$last_name}','{$username}', '{$email}', '{$password}','{$role_name}','$validation_code','1')";
         $result = mysqli_query($conn, $sql) or die("Query Unsuccessfull");
-        header('location: ../');
+        header('location: ../users.php');
         mysqli_close($conn);
     }
 }
